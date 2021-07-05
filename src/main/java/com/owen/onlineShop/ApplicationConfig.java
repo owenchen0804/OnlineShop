@@ -46,6 +46,7 @@ public class ApplicationConfig {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         // "update" 表示只有 schema 出现变化的时候才会更新数据库
+        // 实际发现并不会自动删东西，只是可以发现增加的field才会加到数据库
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.format_sql", "true");

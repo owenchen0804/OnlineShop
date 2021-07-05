@@ -23,7 +23,7 @@ public class ShippingAddress implements Serializable {
     private String state;
     private String zipcode;
     private String country;
-    private String planet;
+
 
 
     @OneToOne(mappedBy = "shippingAddress")
