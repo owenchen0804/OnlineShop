@@ -30,9 +30,10 @@ public class Cart implements Serializable {
     @JsonIgnore
     private Customer customer;  // map后到customer这张表上去
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch=FetchType.EAGER) // 这个这个主要适用于OneToMany
-    // 和OneToOne, 因为如果是ManyToOne的话要是对应的把One删掉的话，那么其他的item如果也对应这个one就找不到了
-    // 也就是remove cart的话那么里面对应的多种cartItem都要被remove
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    //  这个主要适用于OneToMany,不适用于ManyToOne!
+    //  因为如果是ManyToOne的话比如cartItem投射到cart table上，一个cart要对应好多个cartItem
+    //  存储起来会觉得很冗余，相当于多了很多rows来存每一个cartItem，但其实只有一个cart
     private List<CartItem> cartItem; // map到cartItem表上去，因为是一对多所以多个cartItem对应的cart id可能一样
 
     private double totalPrice;
