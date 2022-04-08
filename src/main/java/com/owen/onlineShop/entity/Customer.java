@@ -20,9 +20,9 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id; //因为是int型的PK，Hibernate自带的hibernate_sequence可以自动
-    // 找到当前的数字，然后自动+1
-    //Hibernate帮你存的过程也就是Serialization
-    //即使断电JVM不在了，通过持久层创建出来的record依然可以通过Hibernate反向解析成Object
+    //  找到当前的数字，然后自动+1
+    //  Hibernate帮你存的过程也就是Serialization
+    //  即使断电JVM不在了，通过持久层创建出来的record依然可以通过Hibernate反向解析成Object
     private String firstName;
     private String lastName;
     private String customerPhone;
