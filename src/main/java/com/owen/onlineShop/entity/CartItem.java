@@ -30,8 +30,9 @@ public class CartItem implements Serializable {
 
     @ManyToOne
     @JsonIgnore
-    private Cart cart; //这里在cartItem table中这一列不加说明，默认的column name是“{table}_{PK}”，也就是cart_id
-    // 如果把cartItems用mappedBy打包到cart table的话，会出现一个cart_id有很多cartItem rows，这样cart table就没必要多了这么多行
+    private Cart cart; //这里在cartItem table中这一列不加说明，默认的column name是“{table}_{PK}”，
+    // 也就是cart_id; 如果把cartItems用mappedBy打包到cart table的话，
+    // 会出现一个cart_id有很多cartItem rows，这样cart table就没必要多了这么多行
 
     public int getId() {
         return id;
