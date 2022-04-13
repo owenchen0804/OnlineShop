@@ -28,7 +28,7 @@ public class Customer implements Serializable {
     private String customerPhone;
 
     @OneToOne(cascade = CascadeType.ALL) //级联，通过Customer连到的Shippingaddress会自动根据Customer的改变而update
-    // 比如某个customer删掉了，对应的shippingaddress也会删掉这一行信息
+    //  比如某个customer删掉了，对应的shippingaddress也会删掉这一行信息
     @JoinColumn(unique = true) //因为是unique的所以只能用于OneToOne
     private ShippingAddress shippingAddress;
 
