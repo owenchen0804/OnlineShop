@@ -26,7 +26,7 @@ public class CartController {
     @RequestMapping(value = "/cart/getCartById", method = RequestMethod.GET)
     public ModelAndView getCartId(){
         // cartDao能返回的只是cart本身，而不是对应的cartId
-        // 要找一个用户的cart Id，由于customer和cart是OneToOne的
+        // 要找一个用户的cartId，由于customer和cart是OneToOne的
         // 所以可以从customerDao那边拿到emailId，从而拿到具体的某个customer, 再可以getCart().getId()
         ModelAndView modelAndView = new ModelAndView("cart");
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
