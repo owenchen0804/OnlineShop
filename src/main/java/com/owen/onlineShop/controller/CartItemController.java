@@ -38,11 +38,17 @@ public class CartItemController {
     @RequestMapping("/cart/add/{productId}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addCartItem(@PathVariable(value = "productId") int productId) {
+        //  这里需要在controller里就要验证一下是不是loggedInUser，是的话才可能有下一步
+        //  用到了别的比如验证用户，customerService, productService的情况都需要在controller里面写
+        //  其它属于cartItemService自己的才在Service and DAO里面写
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String username = loggedInUser.getName();
         Customer customer = customerService.getCustomerByUserName(username);
+        //  验证完了user之后由于和customer一一对应，所以可从customerService调用拿到customer信息
 
         Cart cart = customer.getCart();
+        //  cart本身是Mapped By到cartItem的，所以拿到customer才拿得到cart，通过cart
+        //  自己的API可以拿到所有的List<CartItem>
         List<CartItem> cartItems = cart.getCartItem();
         Product product = productService.getProductById(productId);
 
@@ -56,6 +62,7 @@ public class CartItemController {
             }
         }
 
+        //  如果购物车为空，也就是cartItems没有值，或者该carItem是新放入cart的new item的情况下：
         CartItem cartItem = new CartItem();
         cartItem.setQuantity(1);
         cartItem.setProduct(product);
